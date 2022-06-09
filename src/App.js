@@ -4,33 +4,42 @@ import { TodoSearch } from "./components/TodoSearch";
 import { TodoList } from "./components/TodoList";
 import { TodoItem } from "./components/TodoItem";
 import { CreateTodoButton } from "./components/CreateTodoButton";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 // import './App.css';
 import illustration from './images/data.svg';
 
-const todosDemo =[
-  {text: 'Learn JavaScript', completed: true},
-  {text:'Learn React', completed: false},
-  {text:'Learn Vue', completed: false},
-  {text:'Learn Angular', completed: false},
-  {text:'Learn Node', completed: false},
-  {text:'Learn MongoDB', completed: false},
-  {text:'Learn GraphQL', completed: false},
-  {text:'Learn NextJS', completed: false},
-]
 
 function App() {
-  const [todos, setTodos] = React.useState(todosDemo);
+
+  const [todos, setTodos] = useLocalStorage("TODOS_V1", []);
+  
   const [searchValue, setSearchValue] = React.useState('');
 
   const completeToDo = todos.filter(todo => todo.completed).length;
   const totalToDo = todos.length;
 
+  // Search Function
   let searchedTodos = [];
   if (searchValue.length > 0) {
     const filteredTodos = todos.filter(todo => todo.text.toLowerCase().includes(searchValue.toLowerCase()));
     searchedTodos= filteredTodos;
   }else{
     searchedTodos = todos;
+  }
+
+  
+  const markTodo = (text) => {
+    const indexOfTodo = todos.findIndex(t => t.text === text);
+    const newTodos = [...todos];
+    newTodos[indexOfTodo].completed = !newTodos[indexOfTodo].completed;
+    setTodos(newTodos);
+  }
+
+  const deleteTodo = (text) => {
+    const indexOfTodo = todos.findIndex(t => t.text === text);
+    const newTodos = [...todos];
+    newTodos.splice(indexOfTodo, 1);
+    setTodos(newTodos);
   }
 
   return (
@@ -52,7 +61,11 @@ function App() {
         />
         <TodoList>
           {searchedTodos.map(todo => (
-            <TodoItem key={todo.text} todo={todo}  />
+            <TodoItem key={todo.text} 
+              todo={todo}  
+              onComplete={() => markTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+              />
           ))}
         </TodoList>
       </section>
