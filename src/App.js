@@ -11,7 +11,13 @@ import illustration from './images/data.svg';
 
 function App() {
 
-  const [todos, setTodos] = useLocalStorage("TODOS_V1", []);
+
+  const {
+    item: todos, 
+    saveItem: setTodos,
+    loading,
+    error
+  } = useLocalStorage("TODOS_V1", []);
   
   const [searchValue, setSearchValue] = React.useState('');
 
@@ -42,6 +48,8 @@ function App() {
     setTodos(newTodos);
   }
 
+  
+
   return (
     <React.Fragment>
       <section className="todoapp">
@@ -60,6 +68,11 @@ function App() {
           setSearchValue={setSearchValue}
         />
         <TodoList>
+          
+          {error && <p>Hubo un error...</p>}
+          {loading && <p>Cargando...</p>}
+          {(!loading && !searchedTodos.length) && <p>Crea una tarea</p>}
+
           {searchedTodos.map(todo => (
             <TodoItem key={todo.text} 
               todo={todo}  
