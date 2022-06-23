@@ -48,13 +48,23 @@ function App() {
     setTodos(newTodos);
   }
 
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      text,
+      completed: false
+    });
+    setTodos(newTodos);
+  }
   
 
   return (
     <React.Fragment>
       <section className="todoapp">
         <h2>Create a new test</h2>
-        <CreateTodoButton/>
+        <CreateTodoButton
+          addTodo={addTodo}
+        />
         <img src={illustration} alt=""/>
       </section>
 
