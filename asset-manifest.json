@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/intro-react/static/css/main.9c539c44.css",
-    "main.js": "/intro-react/static/js/main.416164d3.js",
-    "static/media/data.svg": "/intro-react/static/media/data.1e751f0bf75af7c4173140d316552cd2.svg",
-    "index.html": "/intro-react/index.html",
-    "main.9c539c44.css.map": "/intro-react/static/css/main.9c539c44.css.map",
-    "main.416164d3.js.map": "/intro-react/static/js/main.416164d3.js.map"
+    "main.css": "/Do-It-App/static/css/main.9c539c44.css",
+    "main.js": "/Do-It-App/static/js/main.76734154.js",
+    "static/media/data.svg": "/Do-It-App/static/media/data.1e751f0bf75af7c4173140d316552cd2.svg",
+    "index.html": "/Do-It-App/index.html",
+    "main.9c539c44.css.map": "/Do-It-App/static/css/main.9c539c44.css.map",
+    "main.76734154.js.map": "/Do-It-App/static/js/main.76734154.js.map"
   },
   "entrypoints": [
     "static/css/main.9c539c44.css",
-    "static/js/main.416164d3.js"
+    "static/js/main.76734154.js"
   ]
 }
